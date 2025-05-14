@@ -36,7 +36,9 @@ function App() {
   return (
     <div className="color-cam-container">
       <span className="color-cam-title">Color Cam</span>
-      <video ref={videoRef} autoPlay />
+      <div className="video-wrapper">
+        <video ref={videoRef} autoPlay className="color-cam-video" />
+      </div>
 
       <button onClick={takePhoto} className="color-cam-button">
         Fotoğraf Çek
