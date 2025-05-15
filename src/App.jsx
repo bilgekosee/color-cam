@@ -31,6 +31,13 @@ function App() {
 
     const imageDataURL = canvas.toDataURL("image/png");
     setPhoto(imageDataURL);
+
+    const cameraEl = document.querySelector(".camera");
+    cameraEl.classList.add("clicked");
+
+    setTimeout(() => {
+      cameraEl.classList.remove("clicked");
+    }, 1000);
   };
 
   return (
@@ -40,9 +47,13 @@ function App() {
         <video ref={videoRef} autoPlay className="color-cam-video" />
       </div>
 
-      <button onClick={takePhoto} className="color-cam-button">
-        Fotoğraf Çek
-      </button>
+      <div class="camera" onClick={takePhoto}>
+        <div class="button-container">
+          <div class="button"></div>
+        </div>
+        <div class="shutter"></div>
+        <div class="flash"></div>
+      </div>
 
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
