@@ -1,10 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import Lottie from "lottie-react";
 
 function App() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [photo, setPhoto] = useState(null);
+  const [animationData, setAnimationData] = useState(null);
+  const lottieRef = useRef();
+
+  useEffect(() => {
+    fetch("/download.json")
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data))
+      .catch((err) => console.error("Animasyon yüklenemedi:", err));
+  }, []);
+
+  const downloadImage = () => {
+    const link = document.createElement("a");
+    link.href = photo;
+    link.download = "photo.png";
+    link.click();
+  };
 
   useEffect(() => {
     navigator.mediaDevices
@@ -60,13 +77,29 @@ function App() {
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
       {photo && (
-        <div>
-          <h3>Çekilen Fotoğraf:</h3>
-          <img src={photo} alt="Çekilen fotoğraf" />
+        <div className="download">
+          <span className="cam-download-title">Photo</span>
+          <img src={photo} alt="Çekilen fotoğraf" className="download-photo" />
           <br />
-          <a href={photo} download="photo.png">
-            İndir
-          </a>
+          {animationData && (
+            <div
+              style={{ width: 100, height: 100, cursor: "pointer" }}
+              onClick={() => {
+                lottieRef.current?.stop();
+                lottieRef.current?.play();
+              }}
+            >
+              <Lottie
+                lottieRef={lottieRef}
+                animationData={animationData}
+                loop={false}
+                autoplay={false}
+                onComplete={() => {
+                  downloadImage();
+                }}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

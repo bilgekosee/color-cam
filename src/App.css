@@ -228,3 +228,26 @@ body {
       inset 0 -0.86em 0 rgba(220, 220, 220, 0.4);
   }
 }
+
+.cam-download-title {
+  font-family: "Delius Unicase", cursive;
+  font-weight: 900;
+  font-size: 20px;
+  padding: 7px;
+  background: linear-gradient(90deg, #ff5f6d, #ffc371, #47fced, #a076f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 4px 4px 10px rgba(7, 7, 7, 0.5);
+}
+.download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.download-photo {
+  width: 600px;
+  height: 600px;
+}
