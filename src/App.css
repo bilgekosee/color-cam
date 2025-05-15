@@ -31,6 +31,10 @@ body {
     transform: rotate(1turn);
   }
 }
+.color-cam-wrapper {
+  display: flex;
+  align-items: center;
+}
 .video-wrapper {
   position: relative;
   z-index: 0;
@@ -40,8 +44,6 @@ body {
   overflow: hidden;
   padding: 5px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 50px;
 }
 

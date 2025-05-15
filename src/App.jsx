@@ -43,16 +43,18 @@ function App() {
   return (
     <div className="color-cam-container">
       <span className="color-cam-title">Color Cam</span>
-      <div className="video-wrapper">
-        <video ref={videoRef} autoPlay className="color-cam-video" />
-      </div>
-
-      <div class="camera" onClick={takePhoto}>
-        <div class="button-container">
-          <div class="button"></div>
+      <div className="color-cam-wrapper">
+        <div className="video-wrapper">
+          <video ref={videoRef} autoPlay className="color-cam-video" />
         </div>
-        <div class="shutter"></div>
-        <div class="flash"></div>
+
+        <div className="camera" onClick={takePhoto}>
+          <div className="button-container">
+            <div className="button"></div>
+          </div>
+          <div className="shutter"></div>
+          <div className="flash"></div>
+        </div>
       </div>
 
       <canvas ref={canvasRef} style={{ display: "none" }} />
