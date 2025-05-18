@@ -247,7 +247,18 @@ body {
   align-items: center;
   justify-content: center;
 }
-.download-photo {
-  width: 600px;
-  height: 600px;
+.download-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lottie-icon {
+  width: 240px;
+  height: 240px;
+}
+.select-color {
+  width: 200px;
+  height: 25px;
+  border-radius: 10px;
+  border-color: #333;
 }

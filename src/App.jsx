@@ -8,6 +8,13 @@ function App() {
   const [photo, setPhoto] = useState(null);
   const [animationData, setAnimationData] = useState(null);
   const lottieRef = useRef();
+  const [selectedColor, setSelectedColor] = useState("");
+
+  useEffect(() => {
+    if (selectedColor) {
+      document.body.style.backgroundColor = selectedColor;
+    }
+  }, [selectedColor]);
 
   useEffect(() => {
     fetch("/download.json")
@@ -60,6 +67,23 @@ function App() {
   return (
     <div className="color-cam-container">
       <span className="color-cam-title">Color Cam</span>
+      <select
+        onChange={(e) => setSelectedColor(e.target.value)}
+        className="select-color"
+      >
+        <option value="">Select a Color</option>
+        <option value="#FFB6C1">Pink</option>
+        <option value="#ADD8E6">Light Blue</option>
+        <option value="#90EE90">Light Green</option>
+        <option value="#FFD700">Gold</option>
+        <option value="#F08080">Salmon</option>
+        <option value="#FF0000">Red</option>
+        <option value="#722F37">Wine</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#FF00FF">Fuchsia</option>
+        <option value="#FF5733">Orange</option>
+      </select>
+
       <div className="color-cam-wrapper">
         <div className="video-wrapper">
           <video ref={videoRef} autoPlay className="color-cam-video" />
@@ -79,27 +103,34 @@ function App() {
       {photo && (
         <div className="download">
           <span className="cam-download-title">Photo</span>
-          <img src={photo} alt="Çekilen fotoğraf" className="download-photo" />
-          <br />
-          {animationData && (
-            <div
-              style={{ width: 100, height: 100, cursor: "pointer" }}
-              onClick={() => {
-                lottieRef.current?.stop();
-                lottieRef.current?.play();
-              }}
-            >
-              <Lottie
-                lottieRef={lottieRef}
-                animationData={animationData}
-                loop={false}
-                autoplay={false}
-                onComplete={() => {
-                  downloadImage();
+          <div className="download-wrapper">
+            <img
+              src={photo}
+              alt="Çekilen fotoğraf"
+              className="download-photo"
+            />
+            <br />
+            {animationData && (
+              <div
+                style={{ width: 100, height: 100, cursor: "pointer" }}
+                onClick={() => {
+                  lottieRef.current?.stop();
+                  lottieRef.current?.play();
                 }}
-              />
-            </div>
-          )}
+              >
+                <Lottie
+                  className="lottie-icon"
+                  lottieRef={lottieRef}
+                  animationData={animationData}
+                  loop={false}
+                  autoplay={false}
+                  onComplete={() => {
+                    downloadImage();
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
